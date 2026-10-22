@@ -70,9 +70,10 @@ espectre_csi/       核心库（协议解析 / 采集 / 特征 / 训练 / 检测
   webapp.py           Web 控制台后端（Flask + SSE）
   dashboard.html      Web 控制台前端（Canvas 渲染）
 scripts/            命令行工具（find_device / live_view / record / train /
-                    run_detector / webui / sim_device）
+                    run_detector / webui / sim_device / import_jsonl）
 data/               采集数据（会话目录）
-models/             训练好的模型
+models/             训练好的模型（e2e_model 模拟器占位模型；
+                    detector_v1 真实数据首训模型）
 outputs/            预测日志、实验记录（观察表 / 采集方案 / 初步结果）
 docs/               ESPectre 官方协议文档与本工具链核对记录
 tests/              端到端测试（模拟器全流程验证）
@@ -99,6 +100,8 @@ tests/              端到端测试（模拟器全流程验证）
 - ✅ 端到端流水线冒烟测试（模拟器）：随机森林 / SVM 验证准确率 100%
 - ✅ 第一段真实数据采集（30s empty，2991 包）
 - ✅ 真机实时检测试运行（10 分钟预测日志，motion/idle 切换与人员活动吻合）
+- ✅ 真实数据首训模型 `models/detector_v1`（15 段采集 672 窗口，MLP，
+  测试准确率 84.3%、误报率 5%）
 - ⏳ 观察实验（动作 × 距离 响应强度记录）
 - ⏳ 正式规范采集（见 collection_plan.md）→ 真数据训练 → 评测报告
 

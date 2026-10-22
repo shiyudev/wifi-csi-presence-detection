@@ -140,7 +140,9 @@
 <script>
 const $ = id => document.getElementById(id);
 let buffer = [];            // [{t, a:[64]}]
-let wfCols = [];            // 瀑布图列
+let wfCols = [];            // 瀑布图列（已归一化的偏差值）
+let wfDirty = 0;            // 上次绘制后新增列数（增量渲染用）
+let wfMean = null, wfDev = 1;  // 每子载波滑动均值 / 全局偏差尺度
 let detScores = [];
 let autoSC = null, lastPick = 0, lastY = null, lastYt = 0;
 
@@ -168,9 +170,20 @@ function openStream() {
     for (const p of d) { buffer.push(p); }
     const cutoff = buffer.length ? buffer[buffer.length-1].t - 10 : 0;
     while (buffer.length && buffer[0].t < cutoff) buffer.shift();
+    // 偏差对"时间维度的滑动均值"计算：静态时近零（暗），某子载波变化时该行变亮
     for (const p of d) {
-      wfCols.push(p.a.map(v => v));
+      if (!wfMean) { wfMean = p.a.slice(); wfDev = 1; }
+      const col = new Array(p.a.length);
+      for (let i = 0; i < p.a.length; i++) {
+        const v = p.a[i];
+        const dev = v - wfMean[i];
+        wfMean[i] += 0.05 * dev;                    // EMA 跟踪每子载波基线
+        wfDev += 0.05 * (Math.abs(dev) - wfDev);    // 全局偏差尺度 EMA
+        col[i] = Math.max(-1, Math.min(1, dev / (3 * wfDev + 1e-6)));
+      }
+      wfCols.push(col);
       if (wfCols.length > 200) wfCols.shift();
+      wfDirty++;
     }
   });
   es.addEventListener("note", e => {
@@ -233,23 +246,41 @@ function drawCurve() {
   ctx.fillStyle = "#8494b4"; ctx.font = "11px sans-serif";
   ctx.fillText(`子载波 ${autoSC.join(", ")} | Y轴 ${y0.toFixed(0)}~${y1.toFixed(0)} | 最近10秒`, 8, 14);
 }
+const WF_MAX = 200;   // 瀑布图缓存列数
 function drawWF() {
-  const [ctx, W, H] = fit($("waterfall"));
-  ctx.clearRect(0, 0, W, H);
+  const cv = $("waterfall");
+  const [ctx, W, H] = fit(cv);
   const cols = wfCols, rows = cols.length ? cols[0].length : 64;
-  cols.forEach((col, x) => {
-    const mean = col.reduce((a,b)=>a+b,0) / rows;
-    col.forEach((v, y) => {
-      const dev = Math.max(-1, Math.min(1, (v - mean) / (mean * 0.06)));
-      const a = Math.abs(dev);
-      ctx.fillStyle = dev > 0
-        ? `rgba(77,163,255,${a*0.9})` : `rgba(255,93,108,${a*0.9})`;
-      const hh = H / rows;
-      ctx.fillRect(x / cols.length * W, H - (y+1) * hh, W / cols.length + 1, hh);
-    });
-  });
-  ctx.fillStyle = "#8494b4"; ctx.font = "11px sans-serif";
-  ctx.fillText(cols.length ? "" : "等待数据…", 8, 14);
+  if (!cols.length) {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = "#8494b4"; ctx.font = "11px sans-serif";
+    ctx.fillText("等待数据…", 8, 14); wfDirty = 0; return;
+  }
+  const colW = W / WF_MAX;
+  if (wfDirty >= cols.length || cv.width !== cv._wfW) {
+    // 全量重绘（仅首次/尺寸变化/落后太多时）
+    cv._wfW = cv.width;
+    ctx.clearRect(0, 0, W, H);
+    cols.forEach((dev, x) => paintCol(ctx, dev, x, colW, W, H, rows));
+  } else if (wfDirty > 0) {
+    // 增量：整幅左移 colW*wfDirty（CSS 像素，transform 已含缩放），再只画新列
+    const shift = colW * wfDirty;
+    if (shift > 0) ctx.drawImage(cv, -shift, 0);
+    const baseX = cols.length - wfDirty;
+    for (let k = 0; k < wfDirty; k++)
+      paintCol(ctx, cols[baseX + k] || cols[cols.length-1], baseX + k, colW, W, H, rows);
+  }
+  wfDirty = 0;
+}
+function paintCol(ctx, dev, x, colW, W, H, rows) {
+  const hh = H / rows, px = x / WF_MAX * W;
+  for (let y = 0; y < dev.length; y++) {
+    const a = Math.abs(dev[y]);
+    if (a < 0.02) continue;                       // 近零偏差直接跳过，省大量填充
+    ctx.fillStyle = dev[y] > 0
+      ? `rgba(77,163,255,${a*0.9})` : `rgba(255,93,108,${a*0.9})`;
+    ctx.fillRect(px, H - (y+1) * hh, colW + 1, hh);
+  }
 }
 function drawSpark() {
   const [ctx, W, H] = fit($("spark"));
@@ -266,7 +297,13 @@ function drawSpark() {
   const ty = H - (parseFloat($("detThr").value)||0.5) * H;
   ctx.beginPath(); ctx.moveTo(0,ty); ctx.lineTo(W,ty); ctx.stroke(); ctx.setLineDash([]);
 }
-(function loop(){ drawCurve(); drawWF(); drawSpark(); requestAnimationFrame(loop); })();
+// 20fps 节流：数据只有 100pps，60fps 全量重绘纯属浪费 CPU
+let _lastDraw = 0;
+function loop(ts){
+  if (ts - _lastDraw >= 50) { _lastDraw = ts; drawCurve(); drawWF(); drawSpark(); }
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
 
 /* ---------- 状态轮询 ---------- */
 let polling = null;

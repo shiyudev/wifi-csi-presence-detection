@@ -123,7 +123,8 @@ class StreamHub:
                     batch.append(item)
                     now = time.time()
                     if len(batch) >= 12 or now - last_send >= 0.1:
-                        rows = [{"t": t, "a": a} for t, a in batch]
+                        rows = [{"t": t, "a": [round(v, 1) for v in a]}
+                                for t, a in batch]
                         batch.clear()
                         last_send = now
                         yield f"event: batch\ndata: {json.dumps(rows)}\n\n"
@@ -324,7 +325,13 @@ def detect_stop():
     return {"ok": True}
 
 
+_sess_cache = {"t": 0.0, "list": []}
+
+
 def _list_sessions():
+    # 3 秒缓存：状态接口每 0.7s 被轮询，没必要每次都扫盘
+    if time.time() - _sess_cache["t"] < 3.0:
+        return _sess_cache["list"]
     data = ROOT / "data"
     out = []
     if data.exists():
@@ -337,7 +344,9 @@ def _list_sessions():
                                 "packets": m.get("packet_count", 0)})
                 except Exception:
                     pass
-    return out[:30]
+    _sess_cache["t"] = time.time()
+    _sess_cache["list"] = out[:30]
+    return _sess_cache["list"]
 
 
 def _sessions_sig():
