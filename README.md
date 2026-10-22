@@ -104,8 +104,6 @@ tests/              端到端测试（模拟器全流程验证）
 - ✅ 真机实时检测试运行（10 分钟预测日志，motion/idle 切换与人员活动吻合）
 - ✅ 真实数据首训模型 `models/detector_v1`（15 段采集 672 窗口，MLP，
   测试准确率 84.3%、误报率 5%）
-- ⏳ 观察实验（动作 × 距离 响应强度记录）
-- ⏳ 正式规范采集（见 collection_plan.md）→ 真数据训练 → 评测报告
 
 详细结果见 [outputs/PRELIMINARY_RESULTS.md](outputs/PRELIMINARY_RESULTS.md)。
 

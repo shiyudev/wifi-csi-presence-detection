@@ -51,16 +51,3 @@ score 上升至 0.3~0.85），说明真实 CSI 数据对运动敏感。
 
 预测日志：`outputs/predictions_20261017_175127.csv` / `.jsonl`
 
-## 5. 观察实验（进行中）
-
-动作 × 距离响应强度记录表见 `outputs/observation_table.md`。
-实验方法：官方 csi-visualizer 观察，动作：空房间 / 1m·2m·3m·隔墙走动 /
-1m 挥手·敲键盘·翻书，每项记录 强/弱/无。
-
-## 6. 下一步
-
-1. 完成观察实验表（G-01 感知范围 / G-02 位置响应依据）
-2. 按 `outputs/collection_plan.md` 正式规范采集（empty/static/walk/
-   typing/page_turning/fan 共 28 段 ≈ 16.5 分钟）
-3. 真实数据训练 → 评测报告（准确率 / 误报率 / 漏检率 / 混淆矩阵）
-4. 若静息体动（呼吸等）被误判为 motion，将 static 拆出做三分类
