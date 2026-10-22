@@ -1,0 +1,27 @@
+{
+  "exp_id": "20261017_174836_empty",
+  "label": "empty",
+  "description": "",
+  "started_at": "2026-10-17T17:48:36.652513",
+  "duration_s": 29.895,
+  "packets": 2991,
+  "traffic_pps": 100.0,
+  "device": {
+    "chip": "esp32c6",
+    "model": null,
+    "label": "",
+    "version": null
+  },
+  "health": {
+    "state": null,
+    "uptime_ms": null
+  },
+  "stream": {
+    "session_id": "ae95ab3815d629238128bb33c96c6e23",
+    "frames": 2991,
+    "parse_errors": 0,
+    "stream_gaps": 0,
+    "interrupted": false
+  },
+  "extra": {}
+}
