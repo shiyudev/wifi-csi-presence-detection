@@ -1,0 +1,88 @@
+{
+  "status": "development_evaluation_not_final",
+  "task": "effective_zone_occupancy",
+  "label_source": "user_confirmed_filenames_and_context",
+  "evaluation_role": "reused_batch_development_holdout",
+  "train_windows": 82,
+  "test_windows": 68,
+  "train_files": [
+    "玩电脑（1）.jsonl",
+    "玩电脑（2）.jsonl",
+    "空场无人（1）.jsonl",
+    "设备旁挥手（1）.jsonl",
+    "走动（1）.jsonl",
+    "走动（2）.jsonl",
+    "风扇无人（1）.jsonl",
+    "风扇无人（2）.jsonl"
+  ],
+  "test_files": [
+    "玩电脑（3）.jsonl",
+    "空场无人（2）.jsonl",
+    "设备旁挥手(2).jsonl",
+    "走动（3）.jsonl",
+    "门口走.jsonl",
+    "风扇无人（3).jsonl"
+  ],
+  "accuracy": 0.7794117647058824,
+  "balanced_accuracy": 0.7735930735930736,
+  "confusion_matrix_rows_true_cols_pred_0_1": [
+    [
+      19,
+      14
+    ],
+    [
+      1,
+      34
+    ]
+  ],
+  "majority_train_baseline_accuracy": 0.5147058823529411,
+  "per_file": {
+    "玩电脑（3）.jsonl": {
+      "windows": 12,
+      "accuracy": 1.0
+    },
+    "空场无人（2）.jsonl": {
+      "windows": 12,
+      "accuracy": 0.16666666666666666
+    },
+    "设备旁挥手(2).jsonl": {
+      "windows": 10,
+      "accuracy": 1.0
+    },
+    "走动（3）.jsonl": {
+      "windows": 13,
+      "accuracy": 0.9230769230769231
+    },
+    "门口走.jsonl": {
+      "windows": 10,
+      "accuracy": 1.0
+    },
+    "风扇无人（3).jsonl": {
+      "windows": 11,
+      "accuracy": 0.6363636363636364
+    }
+  },
+  "limitations": [
+    "Labels assigned from user-confirmed filenames and scene context; exact transitions are not video-verified.",
+    "Only one device, room and collection day; only two empty-room recordings.",
+    "Target is occupancy within the designated effective zone, not the whole room. Fan-only and outside-door movement are negative. No verified long stationary/sleeping-person evaluation.",
+    "This batch was previously inspected and evaluated. Holdout results are development evidence, not a new blind final test. Zone boundary coordinates remain unspecified.",
+    "Occupancy score is not a calibrated probability. Architecture and hyperparameters unchanged from v1; no tuning on this evaluation."
+  ],
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "sklearn": "1.8.0",
+    "joblib": "1.5.3"
+  },
+  "experiment_conditions": {
+    "door": "open throughout batch 1",
+    "max_moving_objects": 1,
+    "fan_during_person_walking": "off",
+    "nonparticipants": "outside effective zone",
+    "door_walk": "outside room near door",
+    "zone_boundary": "not measured"
+  },
+  "labels_manifest_sha256": "a4e0d3f93706d0234ff9343df2e808e521fa972e31723e74da4cb819360ac37d",
+  "archive_sha256": "4f2f544ab865c43286f0d1c6021890ce9cfbfe00713875af9cb2134717c860be"
+}

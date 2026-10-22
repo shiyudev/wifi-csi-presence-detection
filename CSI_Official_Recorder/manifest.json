@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "CSI Official Page Recorder",
+  "version": "0.3.0",
+  "description": "Record your real CSI stream on espectre.dev and export a cloud-training-ready JSONL file.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://espectre.dev/*"
+      ],
+      "js": [
+        "core.js",
+        "plot.js",
+        "recorder.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    }
+  ]
+}

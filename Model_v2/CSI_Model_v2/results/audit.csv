@@ -1,0 +1,16 @@
+﻿frames,duration_s,missing_sequences,max_gap_s,device,initial_label,label_verified,file,split,label,reason,accepted_windows,rejected_windows
+2431,24.308632,0,0.02034899999999995,c5628c,no_motion,False,玩电脑（1）.jsonl,train,1,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",11,0
+2539,25.400645,0,0.04002999999999979,c5628c,no_motion,False,玩电脑（2）.jsonl,train,1,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",11,0
+2797,27.969031,0,0.021125000000000504,c5628c,no_motion,False,玩电脑（3）.jsonl,test,1,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",12,0
+2169,21.679998,0,0.01863699999999824,c5628c,no_motion,False,空场无人（1）.jsonl,train,0,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",9,0
+2728,27.300289,0,0.021467000000001235,c5628c,no_motion,False,空场无人（2）.jsonl,test,0,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",12,0
+2226,22.549857,0,0.024180999999998676,c5628c,no_motion,False,设备旁挥手(2).jsonl,test,1,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",10,0
+2561,25.600224,0,0.019430999999999088,c5628c,no_motion,False,设备旁挥手（1）.jsonl,train,1,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",11,0
+2690,26.909611,0,0.03910300000000033,c5628c,no_motion,False,走动（1）.jsonl,train,1,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",12,0
+1757,17.561029,0,0.02460400000000007,c5628c,no_motion,False,走动（2）.jsonl,train,1,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",7,0
+2841,28.420161,0,0.020503000000000604,c5628c,no_motion,False,走动（3）.jsonl,test,1,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",13,0
+1890,18.898002,0,0.022926000000000002,c5628c,no_motion,False,起身出教室.jsonl,exclude,,Crosses occupancy states; exact effective-zone exit time unknown,0,0
+2339,23.971324,0,0.029767999999998906,c5628c,no_motion,False,门口走.jsonl,test,0,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",10,0
+2280,23.178887,0,0.029619999999999536,c5628c,no_motion,False,风扇无人（1）.jsonl,train,0,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",10,0
+2482,24.986874,0,0.025604000000000404,c5628c,no_motion,False,风扇无人（2）.jsonl,train,0,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",11,0
+2387,24.057335,0,0.024574000000001206,c5628c,no_motion,False,风扇无人（3).jsonl,test,0,"Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video",11,0

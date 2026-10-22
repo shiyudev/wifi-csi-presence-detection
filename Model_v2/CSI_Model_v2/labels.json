@@ -1,0 +1,92 @@
+[
+  {
+    "file": "玩电脑（1）.jsonl",
+    "label": 1,
+    "split": "train",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "玩电脑（2）.jsonl",
+    "label": 1,
+    "split": "train",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "玩电脑（3）.jsonl",
+    "label": 1,
+    "split": "test",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "空场无人（1）.jsonl",
+    "label": 0,
+    "split": "train",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "空场无人（2）.jsonl",
+    "label": 0,
+    "split": "test",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "设备旁挥手(2).jsonl",
+    "label": 1,
+    "split": "test",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "设备旁挥手（1）.jsonl",
+    "label": 1,
+    "split": "train",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "走动（1）.jsonl",
+    "label": 1,
+    "split": "train",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "走动（2）.jsonl",
+    "label": 1,
+    "split": "train",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "走动（3）.jsonl",
+    "label": 1,
+    "split": "test",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "起身出教室.jsonl",
+    "label": null,
+    "split": "exclude",
+    "reason": "Crosses occupancy states; exact effective-zone exit time unknown"
+  },
+  {
+    "file": "门口走.jsonl",
+    "label": 0,
+    "split": "test",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "风扇无人（1）.jsonl",
+    "label": 0,
+    "split": "train",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "风扇无人（2）.jsonl",
+    "label": 0,
+    "split": "train",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  },
+  {
+    "file": "风扇无人（3).jsonl",
+    "label": 0,
+    "split": "test",
+    "reason": "Filename authoritative per user; in-zone person=1, fan-only/empty/outside-door person=0; no synchronized video"
+  }
+]

@@ -104,6 +104,19 @@ tests/              端到端测试（模拟器全流程验证）
 
 详细结果见 [outputs/PRELIMINARY_RESULTS.md](outputs/PRELIMINARY_RESULTS.md)。
 
+## 小组实验材料（第一次实验）
+
+| 目录 / 文件 | 内容 |
+|---|---|
+| `采集数据/` | 第一次真实采集：按动作分类的照片与检测预测日志（jsonl），含日常无人 / 走动 / 挥手 / 敲键盘 / 翻书 / 设备对话等场景 |
+| `Model_v2/` | 首次训练的占用检测模型 v2：训练 notebook、train.py、模型文件（results/occupancy_model.joblib）、评测报告（report.json / audit.csv / test_predictions.csv） |
+| `csi_analysis/` | 数据分析脚本（analyze.py）与图表（运动响应 / 热力图 / 子载波 / 频谱） |
+| `Room_6B514/` | 房间现场数据与照片（Room_6B514_With_Photos） |
+| `CSI_Official_Recorder/` | 官方采集工具 v0.3（浏览器扩展 + load_for_training.py） |
+| `CSI数据采集分析报告.pptx` | 数据采集分析报告（第一次实验汇总） |
+| `docs/MVP_PRD.md` | 项目 MVP PRD（G-01~G-04 需求） |
+| `docs/Project_Proposal.md` | 项目提案 |
+
 ## 协议参考
 
 - ESPectre: https://github.com/francescopace/espectre
