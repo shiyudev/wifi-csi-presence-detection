@@ -57,7 +57,7 @@ python scripts/run_detector.py --host <设备IP> --model models/detector.joblib
 - `csi.npz` —— 原始 IQ 数据（ESPectre 兼容格式：csi_data / timestamp / label 等）
 - `meta.json` —— 标签、设备信息、包数、平均速率、丢帧统计
 
-标签体系与采集纪律见 [outputs/collection_plan.md](outputs/collection_plan.md)。
+标签体系与采集纪律见各场景说明与 [Model_v2/labels.json](Model_v2/CSI_Model_v2/labels.json)。
 
 ## 目录结构
 
