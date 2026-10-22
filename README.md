@@ -104,16 +104,18 @@ tests/              端到端测试（模拟器全流程验证）
 
 详细结果见 [outputs/PRELIMINARY_RESULTS.md](outputs/PRELIMINARY_RESULTS.md)。
 
-## 小组实验材料（第一次实验）
+## 小组实验材料（第一次实验，2026-10-21 · 房间 6B514）
+
+每个文件夹内都有各自的 README 说明，这里给最关键的结论：
 
 | 目录 / 文件 | 内容 |
 |---|---|
-| `采集数据/` | 第一次真实采集：按动作分类的照片与检测预测日志（jsonl），含日常无人 / 走动 / 挥手 / 敲键盘 / 翻书 / 设备对话等场景 |
-| `Model_v2/` | 首次训练的占用检测模型 v2：训练 notebook、train.py、模型文件（results/occupancy_model.joblib）、评测报告（report.json / audit.csv / test_predictions.csv） |
-| `csi_analysis/` | 数据分析脚本（analyze.py）与图表（运动响应 / 热力图 / 子载波 / 频谱） |
-| `Room_6B514/` | 房间现场数据与照片（Room_6B514_With_Photos） |
-| `CSI_Official_Recorder/` | 官方采集工具 v0.3（浏览器扩展 + load_for_training.py） |
-| `CSI数据采集分析报告.pptx` | 数据采集分析报告（第一次实验汇总） |
+| `采集数据/` | 第一次真实采集：**7 类场景 × 每段 24~28 秒**（玩电脑 / 空场无人 / 走动 / 设备旁挥手 / 仅风扇 / 门口走 / 起身出教室），每段一对文件：现场照片（png）+ 检测预测日志（jsonl）。全程 100 pps、0 丢包 |
+| `Model_v2/` | 首次训练的**占用检测模型**（有人/无人二分类）：82 训练窗口 + 68 测试窗口（按文件划分防泄漏），**准确率 78%**、平衡准确率 77%（基线 51%）；漏检仅 1 例，误报 14 例为后续优化方向。含 notebook、训练脚本、模型文件、完整评测报告 |
+| `csi_analysis/` | 逐段数据统计（summary.json）+ 4 张分析图（运动响应对比 / 热力图 / 子载波曲线 / 频谱）+ 分析报告 pptx |
+| `Room_6B514/` | 实验场地记录：5 张照片的位置标注（ESP32 / 路由器 / 人员位置）与项目边界说明（同一房间有人/无人，门外不计入） |
+| `CSI_Official_Recorder/` | 官方采集工具 v0.3（第一次采集所用工具） |
+| `CSI数据采集分析报告.pptx` | 数据采集分析报告（完整版，26MB） |
 | `docs/MVP_PRD.md` | 项目 MVP PRD（G-01~G-04 需求） |
 | `docs/Project_Proposal.md` | 项目提案 |
 
