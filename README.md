@@ -8,6 +8,18 @@
 
 **📋 项目进度（时间线 / 已完成 / 未完成 / 下一步）：见 [PROGRESS.md](PROGRESS.md)**
 
+## 团队成员
+
+| 成员 | GitHub | 主要分工 |
+|---|---|---|
+| 倪世豫 | [@shiyudev](https://github.com/shiyudev) | 真机实验与四轮数据采集、工具链真机适配（5 处修复）、实验场地记录、仓库维护 |
+| 颜子程 | [@elmetaph](https://github.com/elmetaph) | 训练管线（V8/V9）：训练脚本、数据防泄漏划分、画线标注与逐窗核对流程 |
+| 王悦为 | [@wil749](https://github.com/wil749) | 浏览器端二分类实验台 UI（[csi-occupancy-ui/](csi-occupancy-ui/)） |
+| 何储安 | [@Serena-Hca](https://github.com/Serena-Hca) | 项目成果展示（[CSI室内占据检测成果展示.pptx](CSI室内占据检测成果展示.pptx)，与刘羽萱共同制作） |
+| 刘羽萱 | [@Emily-liu00](https://github.com/Emily-liu00) | 项目成果展示（与何储安共同制作） |
+
+各轮实验的数据分析（[csi_analysis/](csi_analysis/) 脚本与报告）由全组共同完成。
+
 ## 硬件与网络
 
 | 项目 | 配置 |
