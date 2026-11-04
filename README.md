@@ -12,8 +12,8 @@
 
 | 成员 | GitHub | 主要分工 |
 |---|---|---|
-| 倪世豫 | [@shiyudev](https://github.com/shiyudev) | 真机实验与全部四轮数据采集（10-17 链路打通与 30s 首采；10-21 七场景 15 段；10-29 图书馆 7 场景；11-03 正式采集 4 类场景 × 5 段，含同步视频与现场照片）<br>工具链真机适配 5 处修复（Origin 头 / 断流自动重连 / wait_ready 兼容 / 特征除零保护 / 检测线程生命周期）<br>PRD 与项目提案（与颜子程合写）、正式实验计划设计、首次周会工作分解<br>实验场地记录（Room_6B514/）、GitHub 仓库建立与文档维护 |
-| 颜子程 | [@elmetaph](https://github.com/elmetaph) | 工具链开发（核心库 / 命令行工具 / Web 控制台 / 模拟器与端到端测试）、协议核对记录（docs/esp_*.md）<br>全部模型训练：Model_v2、detector_v1、V8/V9 训练管线（数据防泄漏划分、画线标注与逐窗核对流程）、官方录制工具训练适配（load_for_training.py）<br>PRD 与项目提案（与倪世豫合写） |
+| 倪世豫 | [@shiyudev](https://github.com/shiyudev) | 工具链开发（espectre_csi/ 核心库、scripts/ 命令行工具、Web 控制台、模拟器与端到端测试）与协议资料整理（docs/esp_*.md 等）<br>真机实验与全部四轮数据采集（10-17 链路打通与 30s 首采；10-21 七场景 15 段；10-29 图书馆 7 场景；11-03 正式采集 4 类场景 × 5 段，含同步视频与现场照片）<br>工具链真机适配 5 处修复（Origin 头 / 断流自动重连 / wait_ready 兼容 / 特征除零保护 / 检测线程生命周期）<br>PRD 与项目提案（与颜子程合写）、正式实验计划设计、首次周会工作分解<br>实验场地记录（Room_6B514/）、GitHub 仓库建立与文档维护 |
+| 颜子程 | [@elmetaph](https://github.com/elmetaph) | 全部模型训练：Model_v2、detector_v1、V8/V9 训练管线（数据防泄漏划分、画线标注与逐窗核对流程）、官方录制工具训练适配（load_for_training.py）<br>PRD 与项目提案（与倪世豫合写） |
 | 王悦为 | [@wil749](https://github.com/wil749) | 浏览器端二分类实验台 UI（[csi-occupancy-ui/](csi-occupancy-ui/)） |
 | 何储安 | [@Serena-Hca](https://github.com/Serena-Hca) | 项目成果展示（[CSI室内占据检测成果展示.pptx](CSI室内占据检测成果展示.pptx)，与刘羽萱共同制作） |
 | 刘羽萱 | [@Emily-liu00](https://github.com/Emily-liu00) | 项目成果展示（与何储安共同制作） |
