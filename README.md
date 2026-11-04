@@ -12,7 +12,7 @@
 
 | 成员 | GitHub | 主要分工 |
 |---|---|---|
-| 倪世豫 | [@shiyudev](https://github.com/shiyudev) | 真机实验与四轮数据采集、工具链真机适配（5 处修复）、实验场地记录、仓库维护 |
+| 倪世豫 | [@shiyudev](https://github.com/shiyudev) | 真机实验与全部四轮数据采集（10-17 链路打通与 30s 首采；10-21 七场景 15 段；10-29 图书馆 7 场景；11-03 正式采集 4 类场景 × 5 段，含同步视频与现场照片）<br>工具链真机适配 5 处修复（Origin 头 / 断流自动重连 / wait_ready 兼容 / 特征除零保护 / 检测线程生命周期）<br>实验场地记录（Room_6B514/）、GitHub 仓库建立与文档维护 |
 | 颜子程 | [@elmetaph](https://github.com/elmetaph) | 训练管线（V8/V9）：训练脚本、数据防泄漏划分、画线标注与逐窗核对流程 |
 | 王悦为 | [@wil749](https://github.com/wil749) | 浏览器端二分类实验台 UI（[csi-occupancy-ui/](csi-occupancy-ui/)） |
 | 何储安 | [@Serena-Hca](https://github.com/Serena-Hca) | 项目成果展示（[CSI室内占据检测成果展示.pptx](CSI室内占据检测成果展示.pptx)，与刘羽萱共同制作） |
