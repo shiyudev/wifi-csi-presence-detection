@@ -34,10 +34,10 @@
 
 ## 团队与分工
 
-- [@shiyudev](https://github.com/shiyudev) 倪世豫：工具链开发（核心库 / 命令行 / Web 控制台 / 模拟器与测试）；真机链路打通与检测试运行、工具链真机适配 5 处修复（Origin 头 / 断流重连 / wait_ready / 除零保护 / 线程生命周期）；协议资料整理（与何储安、刘羽萱共同）；PRD 与提案（与颜子程合写）、实验计划设计、首次周会工作分解；场地记录（Room_6B514/）；仓库建立与文档维护
+- [@shiyudev](https://github.com/shiyudev) 倪世豫：工具链开发（核心库 / 命令行 / 模拟器与测试）；Web 控制台（与何储安、刘羽萱共同）；真机链路打通与检测试运行、工具链真机适配 5 处修复（Origin 头 / 断流重连 / wait_ready / 除零保护 / 线程生命周期）；协议资料整理（与何储安、刘羽萱共同）；PRD 与提案（与颜子程合写）、实验计划设计、首次周会工作分解；场地记录（Room_6B514/）；仓库建立与文档维护
 - [@elmetaph](https://github.com/elmetaph) 颜子程：全部模型训练（Model_v2、detector_v1、V8/V9 管线，防泄漏划分 / 画线标注 / 逐窗核对）、官方录制工具训练适配；PRD 与提案（与倪世豫合写）
 - [@wil749](https://github.com/wil749) 王悦为：浏览器端实验台 UI（csi-occupancy-ui/）
-- [@Serena-Hca](https://github.com/Serena-Hca) 何储安、[@Emily-liu00](https://github.com/Emily-liu00) 刘羽萱：数据分析报告与成果展示 pptx（共同制作）、协议资料整理（参与）
+- [@Serena-Hca](https://github.com/Serena-Hca) 何储安、[@Emily-liu00](https://github.com/Emily-liu00) 刘羽萱：数据分析报告与成果展示 pptx（共同制作）、Web 控制台开发（参与）、协议资料整理（参与）
 - 四轮数据采集（10-17 / 10-21 / 10-29 / 11-03）与数据分析（csi_analysis/ 脚本与图表）为全组共同完成
 
 ## 关键文件索引
