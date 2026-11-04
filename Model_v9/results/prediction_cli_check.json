@@ -1,0 +1,58 @@
+[
+  {
+    "version": "9.0-nov03-train15",
+    "recording": "无人5.jsonl",
+    "candidate": "all",
+    "start_s": 1.0,
+    "accepted_windows": 21,
+    "rejected_windows": 0,
+    "seen_in_training": true,
+    "evaluation_role": "training_diagnostic",
+    "metrics": null,
+    "model_updated": false,
+    "score_kind": "uncalibrated_class_score",
+    "note": "A constant truth is valid only when the entire selected portion has that state; it never changes predictions. This command cannot establish experiment independence."
+  },
+  {
+    "version": "9.0-nov03-train15",
+    "recording": "门外走动5.jsonl",
+    "candidate": "all",
+    "start_s": 1.0,
+    "accepted_windows": 20,
+    "rejected_windows": 0,
+    "seen_in_training": true,
+    "evaluation_role": "training_diagnostic",
+    "metrics": null,
+    "model_updated": false,
+    "score_kind": "uncalibrated_class_score",
+    "note": "A constant truth is valid only when the entire selected portion has that state; it never changes predictions. This command cannot establish experiment independence."
+  },
+  {
+    "version": "9.0-nov03-train15",
+    "recording": "玩电脑5.jsonl",
+    "candidate": "all",
+    "start_s": 1.0,
+    "accepted_windows": 17,
+    "rejected_windows": 0,
+    "seen_in_training": true,
+    "evaluation_role": "training_diagnostic",
+    "metrics": null,
+    "model_updated": false,
+    "score_kind": "uncalibrated_class_score",
+    "note": "A constant truth is valid only when the entire selected portion has that state; it never changes predictions. This command cannot establish experiment independence."
+  },
+  {
+    "version": "9.0-nov03-train15",
+    "recording": "走动5.jsonl",
+    "candidate": "all",
+    "start_s": 1.0,
+    "accepted_windows": 14,
+    "rejected_windows": 0,
+    "seen_in_training": true,
+    "evaluation_role": "training_diagnostic",
+    "metrics": null,
+    "model_updated": false,
+    "score_kind": "uncalibrated_class_score",
+    "note": "A constant truth is valid only when the entire selected portion has that state; it never changes predictions. This command cannot establish experiment independence."
+  }
+]

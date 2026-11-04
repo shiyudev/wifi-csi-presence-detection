@@ -1,0 +1,549 @@
+{
+  "version": "6.0-review",
+  "task": "effective_zone_occupancy",
+  "window_s": 2,
+  "context_s": 8.0,
+  "records": [
+    {
+      "file": "无人1.jsonl",
+      "group_id": "nov03_无人1",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_confirmed_exit_empty_entry_blue_lines",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": 12.0,
+          "label": 1,
+          "activity": "departure",
+          "evidence": "用户确认左侧蓝线之前是人出门过程，作为屋内有人训练；蓝线位置向左留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 15.0,
+          "end_s": 46.0,
+          "label": 0,
+          "activity": "empty",
+          "evidence": "用户确认两条蓝线之间为屋内无人；门外走动也按屋内无人。按两蓝线内侧留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 48.0,
+          "end_s": null,
+          "label": 1,
+          "activity": "arrival",
+          "evidence": "用户确认右侧蓝线之后是人进门过程，作为屋内有人训练；蓝线位置向右留0.5秒并向内取整，末尾仍留1秒缓冲。"
+        }
+      ]
+    },
+    {
+      "file": "无人2.jsonl",
+      "group_id": "nov03_无人2",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_confirmed_exit_empty_entry_blue_lines",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": 10.0,
+          "label": 1,
+          "activity": "departure",
+          "evidence": "用户确认左侧蓝线之前是人出门过程，作为屋内有人训练；蓝线位置向左留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 12.0,
+          "end_s": 44.0,
+          "label": 0,
+          "activity": "empty",
+          "evidence": "用户确认两条蓝线之间为屋内无人；门外走动也按屋内无人。按两蓝线内侧留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 46.0,
+          "end_s": null,
+          "label": 1,
+          "activity": "arrival",
+          "evidence": "用户确认右侧蓝线之后是人进门过程，作为屋内有人训练；蓝线位置向右留0.5秒并向内取整，末尾仍留1秒缓冲。"
+        }
+      ]
+    },
+    {
+      "file": "无人3.jsonl",
+      "group_id": "nov03_无人3",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_confirmed_exit_empty_entry_blue_lines",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": 17.0,
+          "label": 1,
+          "activity": "departure",
+          "evidence": "用户确认左侧蓝线之前是人出门过程，作为屋内有人训练；蓝线位置向左留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 19.0,
+          "end_s": 52.0,
+          "label": 0,
+          "activity": "empty",
+          "evidence": "用户确认两条蓝线之间为屋内无人；门外走动也按屋内无人。按两蓝线内侧留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 54.0,
+          "end_s": null,
+          "label": 1,
+          "activity": "arrival",
+          "evidence": "用户确认右侧蓝线之后是人进门过程，作为屋内有人训练；蓝线位置向右留0.5秒并向内取整，末尾仍留1秒缓冲。"
+        }
+      ]
+    },
+    {
+      "file": "无人4.jsonl",
+      "group_id": "nov03_无人4",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_confirmed_exit_empty_entry_blue_lines",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": 11.0,
+          "label": 1,
+          "activity": "departure",
+          "evidence": "用户确认左侧蓝线之前是人出门过程，作为屋内有人训练；蓝线位置向左留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 13.0,
+          "end_s": 51.0,
+          "label": 0,
+          "activity": "empty",
+          "evidence": "用户确认两条蓝线之间为屋内无人；门外走动也按屋内无人。按两蓝线内侧留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 53.0,
+          "end_s": null,
+          "label": 1,
+          "activity": "arrival",
+          "evidence": "用户确认右侧蓝线之后是人进门过程，作为屋内有人训练；蓝线位置向右留0.5秒并向内取整，末尾仍留1秒缓冲。"
+        }
+      ]
+    },
+    {
+      "file": "门外走动1.jsonl",
+      "group_id": "nov03_门外走动1",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_confirmed_exit_empty_entry_blue_lines",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": 8.0,
+          "label": 1,
+          "activity": "departure",
+          "evidence": "用户确认左侧蓝线之前是人出门过程，作为屋内有人训练；蓝线位置向左留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 10.0,
+          "end_s": 38.0,
+          "label": 0,
+          "activity": "outside_walking",
+          "evidence": "用户确认两条蓝线之间为屋内无人；门外走动也按屋内无人。按两蓝线内侧留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 41.0,
+          "end_s": null,
+          "label": 1,
+          "activity": "arrival",
+          "evidence": "用户确认右侧蓝线之后是人进门过程，作为屋内有人训练；蓝线位置向右留0.5秒并向内取整，末尾仍留1秒缓冲。"
+        }
+      ]
+    },
+    {
+      "file": "门外走动2.jsonl",
+      "group_id": "nov03_门外走动2",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_confirmed_exit_empty_entry_blue_lines",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": 8.0,
+          "label": 1,
+          "activity": "departure",
+          "evidence": "用户确认左侧蓝线之前是人出门过程，作为屋内有人训练；蓝线位置向左留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 10.0,
+          "end_s": 36.0,
+          "label": 0,
+          "activity": "outside_walking",
+          "evidence": "用户确认两条蓝线之间为屋内无人；门外走动也按屋内无人。按两蓝线内侧留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 38.0,
+          "end_s": null,
+          "label": 1,
+          "activity": "arrival",
+          "evidence": "用户确认右侧蓝线之后是人进门过程，作为屋内有人训练；蓝线位置向右留0.5秒并向内取整，末尾仍留1秒缓冲。"
+        }
+      ]
+    },
+    {
+      "file": "门外走动3.jsonl",
+      "group_id": "nov03_门外走动3",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_confirmed_exit_empty_entry_blue_lines",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": 8.0,
+          "label": 1,
+          "activity": "departure",
+          "evidence": "用户确认左侧蓝线之前是人出门过程，作为屋内有人训练；蓝线位置向左留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 10.0,
+          "end_s": 38.0,
+          "label": 0,
+          "activity": "outside_walking",
+          "evidence": "用户确认两条蓝线之间为屋内无人；门外走动也按屋内无人。按两蓝线内侧留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 40.0,
+          "end_s": null,
+          "label": 1,
+          "activity": "arrival",
+          "evidence": "用户确认右侧蓝线之后是人进门过程，作为屋内有人训练；蓝线位置向右留0.5秒并向内取整，末尾仍留1秒缓冲。"
+        }
+      ]
+    },
+    {
+      "file": "门外走动4.jsonl",
+      "group_id": "nov03_门外走动4",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_confirmed_exit_empty_entry_blue_lines",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": 7.0,
+          "label": 1,
+          "activity": "departure",
+          "evidence": "用户确认左侧蓝线之前是人出门过程，作为屋内有人训练；蓝线位置向左留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 9.0,
+          "end_s": 37.0,
+          "label": 0,
+          "activity": "outside_walking",
+          "evidence": "用户确认两条蓝线之间为屋内无人；门外走动也按屋内无人。按两蓝线内侧留0.5秒并向内取整。"
+        },
+        {
+          "start_s": 39.0,
+          "end_s": null,
+          "label": 1,
+          "activity": "arrival",
+          "evidence": "用户确认右侧蓝线之后是人进门过程，作为屋内有人训练；蓝线位置向右留0.5秒并向内取整，末尾仍留1秒缓冲。"
+        }
+      ]
+    },
+    {
+      "file": "玩电脑1.jsonl",
+      "group_id": "nov03_玩电脑1",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_filename_video_start_aligned",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": null,
+          "label": 1,
+          "evidence": "用户提供屋内有人场景文件名；同名视频抽帧核对场景一致。用户确认视频与CSI从头对齐、视频较早停止；CSI尾段按文件名场景标签训练，但尾段没有视频佐证。首尾各留1秒缓冲。",
+          "activity": "computer_use"
+        }
+      ],
+      "video_start_offset_s": 0.0,
+      "video_end_s": 31.9
+    },
+    {
+      "file": "玩电脑2.jsonl",
+      "group_id": "nov03_玩电脑2",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_filename_video_start_aligned",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": null,
+          "label": 1,
+          "evidence": "用户提供屋内有人场景文件名；同名视频抽帧核对场景一致。用户确认视频与CSI从头对齐、视频较早停止；CSI尾段按文件名场景标签训练，但尾段没有视频佐证。首尾各留1秒缓冲。",
+          "activity": "computer_use"
+        }
+      ],
+      "video_start_offset_s": 0.0,
+      "video_end_s": 33.633333
+    },
+    {
+      "file": "玩电脑3.jsonl",
+      "group_id": "nov03_玩电脑3",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_filename_video_start_aligned",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": null,
+          "label": 1,
+          "evidence": "用户提供屋内有人场景文件名；同名视频抽帧核对场景一致。用户确认视频与CSI从头对齐、视频较早停止；CSI尾段按文件名场景标签训练，但尾段没有视频佐证。首尾各留1秒缓冲。",
+          "activity": "computer_use"
+        }
+      ],
+      "video_start_offset_s": 0.0,
+      "video_end_s": 32.7
+    },
+    {
+      "file": "玩电脑4.jsonl",
+      "group_id": "nov03_玩电脑4",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_filename_video_start_aligned",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": null,
+          "label": 1,
+          "evidence": "用户提供屋内有人场景文件名；同名视频抽帧核对场景一致。用户确认视频与CSI从头对齐、视频较早停止；CSI尾段按文件名场景标签训练，但尾段没有视频佐证。首尾各留1秒缓冲。",
+          "activity": "computer_use"
+        }
+      ],
+      "video_start_offset_s": 0.0,
+      "video_end_s": 32.733333
+    },
+    {
+      "file": "走动1.jsonl",
+      "group_id": "nov03_走动1",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_filename_video_start_aligned",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": null,
+          "label": 1,
+          "evidence": "用户提供屋内有人场景文件名；同名视频抽帧核对场景一致。用户确认视频与CSI从头对齐、视频较早停止；CSI尾段按文件名场景标签训练，但尾段没有视频佐证。首尾各留1秒缓冲。",
+          "activity": "indoor_walking"
+        }
+      ],
+      "video_start_offset_s": 0.0,
+      "video_end_s": 22.133333
+    },
+    {
+      "file": "走动2.jsonl",
+      "group_id": "nov03_走动2",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_filename_video_start_aligned",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": null,
+          "label": 1,
+          "evidence": "用户提供屋内有人场景文件名；同名视频抽帧核对场景一致。用户确认视频与CSI从头对齐、视频较早停止；CSI尾段按文件名场景标签训练，但尾段没有视频佐证。首尾各留1秒缓冲。",
+          "activity": "indoor_walking"
+        }
+      ],
+      "video_start_offset_s": 0.0,
+      "video_end_s": 20.9
+    },
+    {
+      "file": "走动3.jsonl",
+      "group_id": "nov03_走动3",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_filename_video_start_aligned",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": null,
+          "label": 1,
+          "evidence": "用户提供屋内有人场景文件名；同名视频抽帧核对场景一致。用户确认视频与CSI从头对齐、视频较早停止；CSI尾段按文件名场景标签训练，但尾段没有视频佐证。首尾各留1秒缓冲。",
+          "activity": "indoor_walking"
+        }
+      ],
+      "video_start_offset_s": 0.0,
+      "video_end_s": 25.566667
+    },
+    {
+      "file": "走动4.jsonl",
+      "group_id": "nov03_走动4",
+      "fold": 0,
+      "include": true,
+      "review_status": "user_filename_video_start_aligned",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1.0,
+          "end_s": null,
+          "label": 1,
+          "evidence": "用户提供屋内有人场景文件名；同名视频抽帧核对场景一致。用户确认视频与CSI从头对齐、视频较早停止；CSI尾段按文件名场景标签训练，但尾段没有视频佐证。首尾各留1秒缓冲。",
+          "activity": "indoor_walking"
+        }
+      ],
+      "video_start_offset_s": 0.0,
+      "video_end_s": 22.5
+    },
+    {
+      "file": "无人5.jsonl",
+      "group_id": "nov03_无人5",
+      "fold": 0,
+      "include": true,
+      "review_status": "reviewed_holdout_promoted_by_user",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1,
+          "end_s": 8,
+          "label": 1,
+          "activity": "departure",
+          "evidence": "5号自身画线图；左出门=1、中间屋内无人=0、右进门=1；0.5秒边界缓冲并向内取整。延续V8人工核对的评分区间。"
+        },
+        {
+          "start_s": 11,
+          "end_s": 36,
+          "label": 0,
+          "activity": "empty",
+          "evidence": "5号自身画线图；左出门=1、中间屋内无人=0、右进门=1；0.5秒边界缓冲并向内取整。延续V8人工核对的评分区间。"
+        },
+        {
+          "start_s": 38,
+          "end_s": null,
+          "label": 1,
+          "activity": "arrival",
+          "evidence": "5号自身画线图；左出门=1、中间屋内无人=0、右进门=1；0.5秒边界缓冲并向内取整。延续V8人工核对的评分区间。"
+        }
+      ]
+    },
+    {
+      "file": "门外走动5.jsonl",
+      "group_id": "nov03_门外走动5",
+      "fold": 0,
+      "include": true,
+      "review_status": "reviewed_holdout_promoted_by_user",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "intervals": [
+        {
+          "start_s": 1,
+          "end_s": 5,
+          "label": 1,
+          "activity": "departure",
+          "evidence": "5号自身画线图；左出门=1、中间屋内无人=0、右进门=1；0.5秒边界缓冲并向内取整。延续V8人工核对的评分区间。"
+        },
+        {
+          "start_s": 8,
+          "end_s": 35,
+          "label": 0,
+          "activity": "outside_walking",
+          "evidence": "5号自身画线图；左出门=1、中间屋内无人=0、右进门=1；0.5秒边界缓冲并向内取整。延续V8人工核对的评分区间。"
+        },
+        {
+          "start_s": 37,
+          "end_s": null,
+          "label": 1,
+          "activity": "arrival",
+          "evidence": "5号自身画线图；左出门=1、中间屋内无人=0、右进门=1；0.5秒边界缓冲并向内取整。延续V8人工核对的评分区间。"
+        }
+      ]
+    },
+    {
+      "file": "玩电脑5.jsonl",
+      "group_id": "nov03_玩电脑5",
+      "fold": 0,
+      "include": true,
+      "review_status": "reviewed_holdout_promoted_by_user",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "video_start_offset_s": 0.0,
+      "video_end_s": 32.366667,
+      "intervals": [
+        {
+          "start_s": 1,
+          "end_s": 32.366667,
+          "label": 1,
+          "activity": "computer_use",
+          "evidence": "用户文件名和同名视频每3秒抽帧核对，视频和CSI从头对齐。5号仅使用视频完整覆盖的2秒窗口，超出尾段不训练。"
+        }
+      ]
+    },
+    {
+      "file": "走动5.jsonl",
+      "group_id": "nov03_走动5",
+      "fold": 0,
+      "include": true,
+      "review_status": "reviewed_holdout_promoted_by_user",
+      "anchor_s": 1.0,
+      "signal_start_s": 1.0,
+      "end_trim_s": 1.0,
+      "video_start_offset_s": 0.0,
+      "video_end_s": 28.0,
+      "intervals": [
+        {
+          "start_s": 1,
+          "end_s": 28.0,
+          "label": 1,
+          "activity": "indoor_walking",
+          "evidence": "用户文件名和同名视频每3秒抽帧核对，视频和CSI从头对齐。5号仅使用视频完整覆盖的2秒窗口，超出尾段不训练。"
+        }
+      ]
+    }
+  ],
+  "v8_note": "Only Nov03 numbers1-4; manifest schema retained for the reused interval loader."
+}

@@ -1,0 +1,12 @@
+test_all_twenty_payloads_are_included (test_v9.Tests.test_all_twenty_payloads_are_included) ... ok
+test_cross_boundary_windows_are_excluded (test_v9.Tests.test_cross_boundary_windows_are_excluded) ... ok
+test_manifest_requires_all_twenty_files (test_v9.Tests.test_manifest_requires_all_twenty_files) ... ok
+test_new_video_tails_excluded (test_v9.Tests.test_new_video_tails_excluded) ... ok
+test_outside_scene_remains_unoccupied (test_v9.Tests.test_outside_scene_remains_unoccupied) ... ok
+test_parameters_and_thresholds_are_fixed (test_v9.Tests.test_parameters_and_thresholds_are_fixed) ... ok
+test_selected_features_ignore_discarded_edges (test_v9.Tests.test_selected_features_ignore_discarded_edges) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.037s
+
+OK

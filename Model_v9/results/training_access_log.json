@@ -1,0 +1,102 @@
+[
+  {
+    "file": "无人1.jsonl",
+    "member": "11.3日数据1含画线/11.3日数据/无人1.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "无人2.jsonl",
+    "member": "11.3日数据1含画线/11.3日数据/无人2.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "无人3.jsonl",
+    "member": "11.3日数据1含画线/11.3日数据/无人3.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "无人4.jsonl",
+    "member": "11.3日数据1含画线/11.3日数据/无人4.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "无人5.jsonl",
+    "member": "11.3日数据1含画线/11.3日数据/无人5.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "玩电脑1.jsonl",
+    "member": "11.3日数据后/玩电脑1.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "玩电脑2.jsonl",
+    "member": "11.3日数据后/玩电脑2.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "玩电脑3.jsonl",
+    "member": "11.3日数据后/玩电脑3.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "玩电脑4.jsonl",
+    "member": "11.3日数据后/玩电脑4.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "玩电脑5.jsonl",
+    "member": "11.3日数据后/玩电脑5.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "走动1.jsonl",
+    "member": "11.3日数据后/走动1.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "走动2.jsonl",
+    "member": "11.3日数据后/走动2.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "走动3.jsonl",
+    "member": "11.3日数据后/走动3.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "走动4.jsonl",
+    "member": "11.3日数据后/走动4.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "走动5.jsonl",
+    "member": "11.3日数据后/走动5.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "门外走动1.jsonl",
+    "member": "11.3日数据1含画线/11.3日数据/门外走动1.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "门外走动2.jsonl",
+    "member": "11.3日数据1含画线/11.3日数据/门外走动2.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "门外走动3.jsonl",
+    "member": "11.3日数据1含画线/11.3日数据/门外走动3.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "门外走动4.jsonl",
+    "member": "11.3日数据1含画线/11.3日数据/门外走动4.jsonl",
+    "role": "training"
+  },
+  {
+    "file": "门外走动5.jsonl",
+    "member": "11.3日数据1含画线/11.3日数据/门外走动5.jsonl",
+    "role": "training"
+  }
+]

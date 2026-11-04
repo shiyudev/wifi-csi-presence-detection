@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "training_files": 20,
+  "training_windows": 345,
+  "old_windows_unchanged": 283,
+  "added_windows": 62,
+  "reloaded_predictions_and_scores_verified": 1380,
+  "heldout_accuracy": null,
+  "independent_test_available": false
+}

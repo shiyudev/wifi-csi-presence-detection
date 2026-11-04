@@ -1,0 +1,27 @@
+{
+  "version": "9.0-nov03-train15",
+  "date": "2026-11-03",
+  "seed": 42,
+  "default_candidate": "v6_rf",
+  "training_rule": "all four scenes 1-5",
+  "independent_test_available": false,
+  "hyperparameter_search": false,
+  "new_labels_policy": "same 62 windows as reviewed V8 evaluation; video tails excluded",
+  "archive_sha256": {
+    "11.3日数据1含画线.zip": "f419ddeb8527c19787d29d940f735e4caeaebdc26072d3ccc9787114ae697edf",
+    "11.3日数据2.zip": "1c960e832d500edd883b028de7106f787b486caaf5bdbd950afbd97d42b67778"
+  },
+  "source_hashes": {
+    "labels_train.json": "28c1e4a5581c460f357ac23c0d2732ff796ef38a3789a6128a420ddcc31ddf6b",
+    "csi_io.py": "217b06dde9a275a0d1e662f8e4f3db631d2d7e4321e1877e96437b52dd2a947b",
+    "predict.py": "8c9d41c462f6429659dac4612e04d2a0afda429d12a84e75b659449015aae715",
+    "data_v6.py": "cdb6c806f94b88b1e0eab1912990c6d9d24ce4b1eb014343ca2103062dfeadfc",
+    "dataset_v9.py": "bcd20f6dc5c28c7a5d35e630cab82ea8faa7967a36f6e8a39885a1cec7eeb8c2",
+    "train.py": "6be299c2dc0ff0a887b73e9517a1cc4295a0365d325188fbffea70a94617f83d",
+    "features_v7.py": "21d112a117ddcfadf5aa83a92fd6d30acd3c984f9016c40826206837e7cf0128",
+    "verify.py": "fbd4fe7a4f06d2f14fa4cd7260a9423f42351929f390af0ae6b1c7ad34d14a25",
+    "dataset_split.json": "acaf8700c20ab8375819877c97cd321148f5e5c24896097756955e3582b913ca",
+    "models_v9.py": "5d0484eb4c137497b3c374a347ed165032ed7a9ca809042555b884f956853779",
+    "test_v9.py": "920ecbd6b37b91ebcbd5ef7afa30f9149869d69bfb947c9bb723405cb7d92c62"
+  }
+}

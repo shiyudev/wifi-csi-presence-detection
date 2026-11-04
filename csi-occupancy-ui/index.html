@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CSI 占据检测 · 二分类实验台</title>
+<link rel="stylesheet" href="assets/app.css" />
+</head>
+<body data-occ="0">
+
+<header class="topbar">
+  <div class="brand">
+    <div class="sigil" aria-hidden="true"><i></i><i></i></div>
+    <div class="brand-text">
+      <b>CSI Occupancy Lab</b>
+      <span>有效区域占据检测 · 二分类实验台</span>
+    </div>
+  </div>
+
+  <nav class="topnav" role="tablist">
+    <button class="route-btn active" data-route="live">实时检测</button>
+    <button class="route-btn" data-route="eval">模型评估</button>
+    <button class="route-btn" data-route="data">数据与标签</button>
+    <button class="route-btn" data-route="setup">实验设置</button>
+  </nav>
+
+  <div class="topmeta">
+    <label class="ds-pick" id="dsPickWrap" hidden>
+      <select id="dsPick" aria-label="切换数据集"></select>
+    </label>
+    <span class="chip chip-source" id="sourceChip"><i></i>演示流</span>
+    <span class="chip chip-model" id="modelChip"><i></i>模型加载中</span>
+    <span class="clock" id="clock">--:--:--</span>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar">
+    <section class="panel side-block">
+      <div class="side-title">判定阈值</div>
+      <div class="thr-readout">
+        <b id="sideThrVal">0.50</b>
+        <span>分数 ≥ 阈值 → 有人</span>
+      </div>
+      <input class="range" type="range" id="sideThr" min="5" max="95" step="1" value="50" />
+      <div class="range-scale"><span>0</span><span>1</span></div>
+      <p class="side-note" id="sideThrNote">当前阈值下，实时判定与状态时间线同步更新。</p>
+    </section>
+
+    <section class="panel side-block" id="sourceBlock">
+      <div class="side-title">数据源</div>
+      <div class="src-tabs" id="srcTabs">
+        <button class="src-tab" data-src="live">实时监控</button>
+        <button class="src-tab" data-src="replay">真实回放</button>
+        <button class="src-tab active" data-src="demo">模拟流</button>
+      </div>
+      <div class="replay-box" id="replayBox" hidden>
+        <label class="field">
+          <span>样本</span>
+          <select id="replayPick"></select>
+        </label>
+        <div class="replay-ctrls">
+          <button class="mini-btn" id="replayToggle">播放</button>
+          <button class="mini-btn ghost" id="replayReset">重置</button>
+        </div>
+        <label class="file-pick">
+          <input type="file" id="replayFile" accept=".jsonl,.gz" />
+          <span>选择本地 .jsonl / .jsonl.gz</span>
+        </label>
+        <div class="replay-bar"><i id="replayFill"></i></div>
+        <p class="side-note" id="replayNote">读取采集原始帧；分数由浏览器内 200 棵树的随机森林现算，不经后端。</p>
+      </div>
+      <div class="replay-box" id="liveBox" hidden>
+        <label class="field">
+          <span>桥地址</span>
+          <input type="text" id="liveUrl" value="http://127.0.0.1:9010/events" spellcheck="false" />
+        </label>
+        <div class="replay-ctrls">
+          <button class="mini-btn" id="liveConnect">连接</button>
+          <button class="mini-btn ghost" id="liveDisconnect">断开</button>
+        </div>
+        <div class="live-metrics">
+          <div class="lm"><span>链路</span><b id="liveState">未连接</b></div>
+          <div class="lm"><span>速率</span><b id="liveRate">—</b></div>
+          <div class="lm"><span>缓冲</span><b id="liveBuf">—</b></div>
+          <div class="lm"><span>窗口/丢弃</span><b id="liveWin">0 / 0</b></div>
+          <div class="lm wide"><span>最近窗口分数</span><b id="liveScore">—</b></div>
+        </div>
+        <p class="side-note" id="liveNote">点「连接」接收实时流；桥未启动时先运行 _work/live_bridge.py。</p>
+      </div>
+    </section>
+
+    <section class="panel side-block" id="sceneBlock">
+      <div class="side-title">演示场景</div>
+      <div class="scene-grid" id="sceneGrid">
+        <button class="scene" data-scene="vacant"><span class="dot"></span>无人房间</button>
+        <button class="scene" data-scene="sitting"><span class="dot"></span>有人 · 静坐</button>
+        <button class="scene" data-scene="walking"><span class="dot"></span>有人 · 走动</button>
+        <button class="scene" data-scene="waving"><span class="dot"></span>有人 · 挥手</button>
+        <button class="scene" data-scene="fan"><span class="dot"></span>风扇干扰</button>
+        <button class="scene" data-scene="door"><span class="dot"></span>门口经过</button>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="autoDemo" checked />
+        <span class="track"><i></i></span>
+        <span>自动切换场景</span>
+      </label>
+      <p class="side-note">演示流由前端模拟生成，只用于验证交互；真实评估结果见「模型评估」。</p>
+    </section>
+
+    <section class="panel side-block">
+      <div class="side-title">采集状态</div>
+      <div class="kv"><span>设备</span><b class="mono" id="kvDevice">—</b></div>
+      <div class="kv"><span>房间</span><b id="kvRoom">—</b></div>
+      <div class="kv"><span>子载波</span><b class="mono" id="kvSc">—</b></div>
+      <div class="kv"><span>采样率</span><b class="mono" id="kvRate">—</b></div>
+      <div class="kv"><span>数据源</span><b id="srcState">模拟流</b></div>
+      <div class="side-foot">
+        <span class="live-dot"></span>
+        <span id="runState">运行中 · 20 ms / 帧</span>
+      </div>
+    </section>
+  </aside>
+
+  <main class="main">
+    <!-- ===================== 实时检测 ===================== -->
+    <section class="view active" data-view="live">
+      <div class="live-grid">
+        <article class="panel hero" id="heroPanel">
+          <div class="hero-glow" aria-hidden="true"></div>
+          <div class="hero-top">
+            <span class="eyebrow">有效区域内是否有人</span>
+            <span class="truth" id="heroTruth">演示真值 · 无人</span>
+          </div>
+
+          <div class="hero-main">
+            <div class="lamp" id="lamp"><span></span></div>
+            <div class="hero-word">
+              <div class="word-en" id="heroEn">VACANT</div>
+              <div class="word-cn" id="heroCn">无人</div>
+            </div>
+            <div class="hero-score">
+              <b id="heroScore">0.00</b>
+              <span>占据分数</span>
+            </div>
+          </div>
+
+          <div class="meter">
+            <div class="meter-track">
+              <div class="meter-fill" id="meterFill"></div>
+              <div class="meter-mark" id="meterMark"><i></i><em>0.50</em></div>
+            </div>
+            <div class="meter-scale"><span>0.0 · 无人</span><span>阈值</span><span>1.0 · 有人</span></div>
+          </div>
+
+          <div class="hero-foot">
+            <div><b id="dwell">0.0s</b><span>状态驻留</span></div>
+            <div><b id="sessionDur">00:00</b><span>本次运行</span></div>
+            <div><b id="switches">0</b><span>状态切换</span></div>
+            <div><b id="missCount">0 / 0</b><span>漏检 / 误报</span></div>
+          </div>
+        </article>
+
+        <article class="panel mini-stack">
+          <div class="mini">
+            <span class="mini-label">CSI 包率</span>
+            <div class="mini-value"><b id="kpiRate">0</b><em>pkt/s</em></div>
+            <div class="mini-bar"><i id="rateBar"></i></div>
+          </div>
+          <div class="mini">
+            <span class="mini-label">窗口平均振幅</span>
+            <div class="mini-value"><b id="kpiAmp">0.0</b><em>|H|</em></div>
+            <div class="mini-sub" id="kpiAmpSub">相对基线 0.0%</div>
+          </div>
+          <div class="mini">
+            <span class="mini-label">运动能量</span>
+            <div class="mini-value"><b id="kpiMotion">0.00</b><em>diff</em></div>
+            <div class="mini-sub" id="kpiMotionSub">窗口内一阶差分</div>
+          </div>
+          <div class="mini">
+            <span class="mini-label">推理窗口</span>
+            <div class="mini-value"><b id="kpiWin">0</b><em>frames</em></div>
+            <div class="mini-sub" id="kpiWinSub">2 s · 步长 2 s</div>
+          </div>
+        </article>
+
+        <article class="panel timeline-panel">
+          <div class="panel-head">
+            <div>
+              <b>状态时间线</b>
+              <span>最近 60 秒 · 1 秒切片</span>
+            </div>
+            <div class="tl-legend"><span><i class="occ"></i>有人</span><span><i class="vac"></i>无人</span></div>
+          </div>
+          <div class="timeline" id="timeline"></div>
+          <div class="timeline-axis"><span>-60s</span><span>-30s</span><span>现在</span></div>
+        </article>
+
+        <article class="panel event-panel">
+          <div class="panel-head">
+            <div>
+              <b>事件日志</b>
+              <span>状态变化与判定偏差</span>
+            </div>
+            <button class="btn-ghost" id="btnClearLog">清空</button>
+          </div>
+          <ul class="event-list" id="eventList"></ul>
+        </article>
+
+        <article class="panel heat-panel">
+          <div class="panel-head">
+            <div>
+              <b>子载波振幅热力图</b>
+              <span id="heatSub">最近 5 秒</span>
+            </div>
+            <div class="ramp-legend"><span>弱</span><i></i><span>强</span></div>
+          </div>
+          <div class="canvas-box heat-box"><canvas id="heatCanvas"></canvas></div>
+          <div class="panel-head sub">
+            <div>
+              <b>选中子载波时序</b>
+              <span>振幅随时间的波动是占据判定的原始证据</span>
+            </div>
+            <label class="inline-select">子载波
+              <select id="scPick"></select>
+            </label>
+          </div>
+          <div class="canvas-box line-box"><canvas id="lineCanvas"></canvas></div>
+        </article>
+
+        <article class="panel decision-panel">
+          <div class="panel-head">
+            <div>
+              <b>判定流</b>
+              <span>最近 30 秒占据分数</span>
+            </div>
+            <span class="badge-now" id="decisionBadge">无人</span>
+          </div>
+          <div class="canvas-box decision-box"><canvas id="decisionCanvas"></canvas></div>
+          <div class="prob">
+            <div class="prob-row">
+              <span>有人 occupied</span>
+              <div class="prob-track"><i class="occ" id="probOcc"></i></div>
+              <b id="probOccNum">0%</b>
+            </div>
+            <div class="prob-row">
+              <span>无人 vacant</span>
+              <div class="prob-track"><i class="vac" id="probVac"></i></div>
+              <b id="probVacNum">100%</b>
+            </div>
+          </div>
+          <p class="note">分数来自二分类器输出的正类得分，并非校准概率；阈值可在左侧调整。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== 模型评估 ===================== -->
+    <section class="view" data-view="eval">
+      <div class="stat-row">
+        <div class="stat">
+          <span>准确率</span>
+          <b><i id="statAcc">—</i><em>%</em></b>
+          <small id="statAccSub">Accuracy</small>
+        </div>
+        <div class="stat">
+          <span>平衡准确率</span>
+          <b><i id="statBal">—</i><em>%</em></b>
+          <small>Balanced · 两类各半权重</small>
+        </div>
+        <div class="stat">
+          <span>多数类基线</span>
+          <b><i id="statBase">—</i><em>%</em></b>
+          <small id="statBaseSub">全判“有人”即可达到</small>
+        </div>
+        <div class="stat">
+          <span>样本规模</span>
+          <b><i id="statTrain">—</i><em id="statTest">+—</em></b>
+          <small>训练窗口 / 测试窗口</small>
+        </div>
+      </div>
+
+      <div class="eval-grid">
+        <article class="panel cm-panel">
+          <div class="panel-head">
+            <div>
+              <b>混淆矩阵</b>
+              <span id="cmSub">阈值 0.50 · 报告口径</span>
+            </div>
+          </div>
+          <div class="cm-axis-top">
+            <span></span><span>预测 无人</span><span>预测 有人</span>
+          </div>
+          <div class="cm">
+            <div class="cm-row">
+              <span class="cm-ylabel">真值 无人</span>
+              <div class="cm-cell tn" id="cmTN"><b>—</b><span>真阴 TN</span></div>
+              <div class="cm-cell fp" id="cmFP"><b>—</b><span>假阳 FP</span></div>
+            </div>
+            <div class="cm-row">
+              <span class="cm-ylabel">真值 有人</span>
+              <div class="cm-cell fn" id="cmFN"><b>—</b><span>假阴 FN</span></div>
+              <div class="cm-cell tp" id="cmTP"><b>—</b><span>真阳 TP</span></div>
+            </div>
+          </div>
+          <div class="cm-derived" id="cmDerived"></div>
+          <p class="note" id="cmNote"></p>
+        </article>
+
+        <article class="panel thr-panel">
+          <div class="panel-head">
+            <div>
+              <b>阈值灵敏度</b>
+              <span id="thrPanelSub">拖动阈值，用真实测试窗口重算</span>
+            </div>
+            <button class="btn-ghost" id="btnThrReset">回到 0.50</button>
+          </div>
+          <div class="thr-main">
+            <div class="thr-big"><b id="evalThrVal">0.50</b><span>分析阈值</span></div>
+            <input class="range" type="range" id="evalThr" min="5" max="95" step="1" value="50" />
+          </div>
+          <div class="canvas-box thr-box"><canvas id="thresholdCanvas"></canvas></div>
+          <div class="eval-metrics" id="evalMetrics"></div>
+          <p class="note" id="thrNote">阈值与报告口径对齐时，指标应与报告完全一致。</p>
+        </article>
+      </div>
+
+      <div class="eval-lower">
+        <article class="panel dist-panel">
+          <div class="panel-head">
+            <div>
+              <b>测试窗口分数分布</b>
+              <span>每个点 = 一个 2 秒窗口，按真实标签着色</span>
+            </div>
+            <div class="dist-legend">
+              <span><i class="occ"></i>真值 有人</span>
+              <span><i class="vac"></i>真值 无人</span>
+              <span><i class="dash"></i>当前阈值</span>
+            </div>
+          </div>
+          <div class="canvas-box dist-box"><canvas id="distCanvas"></canvas></div>
+          <p class="note" id="distNote"></p>
+        </article>
+
+        <article class="panel perfile-panel">
+          <div class="panel-head">
+            <div>
+              <b>分文件准确率</b>
+              <span id="perFileSub"></span>
+            </div>
+          </div>
+          <div class="perfile" id="perFileBars"></div>
+          <p class="note" id="perFileNote"></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== 数据与标签 ===================== -->
+    <section class="view" data-view="data">
+      <div class="data-summary" id="dataSummary"></div>
+
+      <article class="panel">
+        <div class="panel-head">
+          <div>
+            <b>录制文件与标签</b>
+            <span>标签口径：有效区域内是否有人（1 有人 / 0 无人 / 排除）</span>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>文件</th><th>真值</th><th>用途</th><th>帧数</th><th>时长</th><th>可用窗口</th><th>测试准确率</th><th>备注</th>
+              </tr>
+            </thead>
+            <tbody id="dataTable"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <div class="data-lower">
+        <article class="panel">
+          <div class="panel-head"><div><b>标签口径</b><span>为什么风扇与门口经过算“无人”</span></div></div>
+          <ul class="fact-list">
+            <li><b>1 · 有人</b><span>有效检测区域内存在任何在场人员，包括静坐、打字、走动、挥手。</span></li>
+            <li><b>0 · 无人</b><span>区域内无人；仅风扇运转、空场噪声、以及门外走廊经过都不计入占据。</span></li>
+            <li><b>排除</b><span>「起身出教室」跨越了占据状态，且缺少精确离区时刻，不参与训练与评估。</span></li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><div><b>实验条件与局限</b><span>来源：results/report.json · limitations</span></div></div>
+          <ul class="limit-list" id="limitList"></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== 实验设置 ===================== -->
+    <section class="view" data-view="setup">
+      <div class="setup-grid">
+        <article class="panel">
+          <div class="panel-head"><div><b>判定参数</b><span>影响实时页的判定，不改变已训练的模型</span></div></div>
+          <div class="form">
+            <label>判定阈值 <input class="input" type="number" id="cfgThr" value="0.50" min="0.05" max="0.95" step="0.01" /></label>
+            <label>最短驻留 (s) <input class="input" type="number" id="cfgDwell" value="1.0" min="0" max="10" step="0.5" /></label>
+            <label>分数平滑 α <input class="input" type="number" id="cfgSmooth" value="0.35" min="0" max="1" step="0.05" /></label>
+            <label>自动演示切换 (s) <input class="input" type="number" id="cfgAuto" value="12" min="4" max="60" step="1" /></label>
+            <div class="form-actions">
+              <button class="btn-primary" id="btnApplyCfg">应用参数</button>
+              <button class="btn-ghost" id="btnResetCfg">恢复默认</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><div><b>采集与模型</b><span>只读，来自数据文件与训练脚本</span></div></div>
+          <div id="modelKv"></div>
+        </article>
+
+        <article class="panel span-2">
+          <div class="panel-head"><div><b>换模型 / 换数据集</b><span>两种接入方式，界面无需重写</span></div></div>
+          <pre class="codeblock"># 1) 换评估数据集：重跑训练后，用脚本重新生成数据
+python _work/build_data.py --results ../新目录/results --out assets/data.js
+
+# 2) 不动 data.js，改用外部 JSON（需通过 http 访问）
+#    index.html?data=assets/data_2026Q1.json
+python _work/build_data.py --results ../新目录/results \
+        --out assets/data_2026Q1.json --format json
+
+// 3) 接真实推理：保持二分类契约，后端推分数即可
+window.CSIOcc.pushPrediction(0.87);   // score ∈ [0,1]
+window.CSIOcc.pushFrame(amplitude64); // 一帧 N 维振幅
+window.CSIOcc.setThreshold(0.55);
+window.CSIOcc.getState();             // { occupied, score, threshold, ... }
+
+// 后端只需暴露 POST /predict
+// body: { amp: [[...N], [...N], ...] }  →  resp: { score: 0.87 }</pre>
+          <p class="note" id="apiNote">模型输出为预测正类概率，但报告已声明它不是校准概率。生产环境建议加入 1–2 秒驻留与冷却，抑制单窗口抖动。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="page-foot">
+  <div class="foot-left">
+    <span class="foot-dot"></span>
+    <span id="footDataset">数据集加载中…</span>
+    <span class="foot-sep">·</span>
+    <span id="footModel">—</span>
+  </div>
+  <div class="foot-right">
+    <span id="footGenerated"></span>
+    <span class="foot-sep">·</span>
+    <span>二分类实验台</span>
+  </div>
+</footer>
+
+<div class="toast-host" id="toastHost"></div>
+
+<script src="assets/data.js"></script>
+<script src="assets/model.js"></script>
+<script src="assets/infer.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/replay.js"></script>
+<script src="assets/live.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+{
+  "model_version": "8.0-nov03-train14",
+  "evaluated_before_V9_training": true,
+  "by_candidate": {
+    "common_median_rf": [
+      57,
+      62
+    ],
+    "common_rf": [
+      58,
+      62
+    ],
+    "rf_threshold_060": [
+      61,
+      62
+    ],
+    "v6_rf": [
+      60,
+      62
+    ]
+  },
+  "by_file_candidate": {
+    "走动5.jsonl|common_median_rf": [
+      13,
+      13
+    ],
+    "走动5.jsonl|common_rf": [
+      13,
+      13
+    ],
+    "走动5.jsonl|rf_threshold_060": [
+      13,
+      13
+    ],
+    "走动5.jsonl|v6_rf": [
+      13,
+      13
+    ],
+    "门外走动5.jsonl|common_median_rf": [
+      17,
+      17
+    ],
+    "门外走动5.jsonl|common_rf": [
+      14,
+      17
+    ],
+    "门外走动5.jsonl|rf_threshold_060": [
+      16,
+      17
+    ],
+    "门外走动5.jsonl|v6_rf": [
+      15,
+      17
+    ],
+    "玩电脑5.jsonl|common_median_rf": [
+      10,
+      15
+    ],
+    "玩电脑5.jsonl|common_rf": [
+      14,
+      15
+    ],
+    "玩电脑5.jsonl|rf_threshold_060": [
+      15,
+      15
+    ],
+    "玩电脑5.jsonl|v6_rf": [
+      15,
+      15
+    ],
+    "无人5.jsonl|common_median_rf": [
+      17,
+      17
+    ],
+    "无人5.jsonl|common_rf": [
+      17,
+      17
+    ],
+    "无人5.jsonl|rf_threshold_060": [
+      17,
+      17
+    ],
+    "无人5.jsonl|v6_rf": [
+      17,
+      17
+    ]
+  },
+  "counts_format": [
+    "correct",
+    "scored_windows"
+  ],
+  "excluded_unique_windows": 10,
+  "source": "original uploaded V8 CSVs plus reviewed 5 labels",
+  "valid_for_V9": false
+}
